@@ -10,10 +10,18 @@ export const initialState : BudgetType = {
 }
 
 export const BudgetRecuder = (
-    
+
     state : BudgetType = initialState,
     action : BudgetActions
 
 ) => { 
 
+    if( action.type == 'add-budget'){
+        return {
+            ...state,
+            budget : action.payload.budget
+        }
+    }
+
+    return state
 }
