@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react"
+import { useBudget } from "../hooks/useBudget"
 
 
 export default function BudgetForm() {
 
     const [ budget , setBudget ] = useState( 0 )
+    const { dispatch } = useBudget() // Custom hook que tiene el context
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         console.log( +e.target.value) 
@@ -16,9 +18,15 @@ export default function BudgetForm() {
 
     } , [ budget ])
 
+    const handleSubmit = ( e : React.FormEvent<HTMLFormElement> ) => { 
+        e.preventDefault()
+
+       dispatch({ type : 'add-budget' , payload : { budget } })
+    }
+
     return (
         <div>
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={ handleSubmit }>
 
                 <div className=" flex flex-col space-y-5">
                     <label htmlFor="budget" className=" text-4xl text-blue-600 font-bold text-center">
