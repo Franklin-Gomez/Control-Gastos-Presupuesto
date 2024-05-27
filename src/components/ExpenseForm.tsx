@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
-import { DraftExpense } from "../types";
+import { DraftExpense, Value } from "../types";
 
 
 
@@ -15,6 +15,27 @@ export default function ExpenseForm() {
         category : '',
         date : new Date()
     })
+
+    const handleChange = ( e : React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement> ) => { 
+
+        const { name , value } = e.target
+        const isAmountField = ['amount'].includes( name )
+
+
+        setExpense({
+            ...expense,
+            // si es amoun lo covertimosa number, sino se queda en string
+            [ name ] : isAmountField ? +value : value
+        })
+
+    }
+
+    const handleChangeDate = ( value : Value)  => { 
+        setExpense({
+            ...expense,
+            date : value
+        })
+    }
 
 
     return (
@@ -37,6 +58,7 @@ export default function ExpenseForm() {
                     className="bg-slate-100 p-2"
                     name="expenseName"
                     value={expense.expenseName}
+                    onChange={handleChange}
                 />    
             </div>
             
@@ -53,6 +75,8 @@ export default function ExpenseForm() {
                     className="bg-slate-100 p-2"
                     name="amount"
                     value={expense.amount}
+                    onChange={handleChange}
+                    
                 />    
             </div>
 
@@ -67,6 +91,7 @@ export default function ExpenseForm() {
                     className="bg-slate-100 p-2 mb-4"
                     name="category"
                     value={expense.category}
+                    onChange={handleChange}
                 > 
 
                     <option value=""> -- Seleccione -- </option>
@@ -89,6 +114,7 @@ export default function ExpenseForm() {
                 <DatePicker
                     className='bg-slate-100 p-2 border-0'
                     value={expense.date}
+                    onChange={handleChangeDate}
                 />  
 
             </div>

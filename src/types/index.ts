@@ -11,8 +11,8 @@ export type Expense = {
 export type DraftExpense = Omit<Expense, 'id'>
 
 // types de la dependencia de date
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+export type ValuePiece = Date | null;
+export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 // types para la database
 export type category = { 
