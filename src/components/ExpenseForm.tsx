@@ -1,4 +1,13 @@
 import { categories } from "../data/db"
+import { useState } from 'react';
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css'
+import 'react-calendar/dist/Calendar.css'
+
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function ExpenseForm() {
   return (
@@ -59,6 +68,18 @@ export default function ExpenseForm() {
                 ))}
 
             </select>
+        </div>
+
+        <div className="flex flex-col gap-2">
+            <label 
+                htmlFor="date" 
+                className="text-xl"
+            > Fecha Gasto : </label>
+
+            <DatePicker
+                className='bg-slate-100 p-2 border-0'
+            />  
+            
         </div>
 
         <input
