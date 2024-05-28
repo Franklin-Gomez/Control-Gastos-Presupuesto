@@ -64,7 +64,8 @@ export const BudgetRecuder = (
 
         return {
             ...state,
-            expense : [...state.expenses , expense ] 
+            expenses : [...state.expenses , expense ] ,
+            modal : false
         }
     }
 
