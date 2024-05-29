@@ -1,5 +1,5 @@
 import { categories } from "../data/db"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
@@ -17,7 +17,15 @@ export default function ExpenseForm() {
     })
 
     const [ error , setError ] = useState('')
-    const { dispatch } = useBudget()
+    const { dispatch , state } = useBudget()
+
+    useEffect(() => { 
+        if( state.editingId ) { 
+            const editingExpense = state.expenses.filter( expense => expense.id == state.editingId )[0]
+
+            setExpense( editingExpense )
+        }
+    } , [ state.editingId ])
 
     const handleChange = ( e : React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement> ) => { 
 

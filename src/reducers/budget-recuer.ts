@@ -8,18 +8,21 @@ export type BudgetActions =
     { type : 'show-modal'} | 
     { type : 'close-modal'} |
     { type : 'add-expense' , payload : { expense : DraftExpense }} |
-    { type : 'remove-expense' , payload : { id : Expense['id'] }} 
+    { type : 'remove-expense' , payload : { id : Expense['id'] }} |
+    { type : 'get-expense-by-id' , payload : { id : Expense['id'] }} 
 
 export type BudgetType = { 
     budget : number
     modal : boolean
     expenses : Expense[]
+    editingId : Expense['id']
 }
 
 export const initialState : BudgetType = {
     budget : 0,
     modal : false,
-    expenses : []
+    expenses : [],
+    editingId : ''
 }
 
 // recibe el registro sin id , y devuelve con id
@@ -79,5 +82,13 @@ export const BudgetRecuder = (
         }
     }
 
+    if( action.type == 'get-expense-by-id'){
+        return {
+            ...state,
+            editingId : action.payload.id,
+            modal : true
+        }
+    }
+    
     return state
 }
