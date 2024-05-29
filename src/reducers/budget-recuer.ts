@@ -1,15 +1,14 @@
 import { DraftExpense, Expense } from "../types"
 import { v4 as uuidv4 } from 'uuid';
 
-
-
 export type BudgetActions = 
     { type : 'add-budget' , payload : { budget : number }} |
     { type : 'show-modal'} | 
     { type : 'close-modal'} |
     { type : 'add-expense' , payload : { expense : DraftExpense }} |
     { type : 'remove-expense' , payload : { id : Expense['id'] }} |
-    { type : 'get-expense-by-id' , payload : { id : Expense['id'] }} 
+    { type : 'get-expense-by-id' , payload : { id : Expense['id'] }} |
+    { type : 'update-expense' , payload : { expense : Expense }} 
 
 export type BudgetType = { 
     budget : number
@@ -57,7 +56,8 @@ export const BudgetRecuder = (
     if( action.type == 'close-modal') {
         return {
             ...state,
-            modal : false
+            modal : false,
+            editingId : ''
         }
     }
  
@@ -88,6 +88,19 @@ export const BudgetRecuder = (
             editingId : action.payload.id,
             modal : true
         }
+    }
+
+    if( action.type == 'update-expense') { 
+
+        const updateExpenses = state.expenses.map((exp) => exp.id === action.payload.expense.id ? action.payload.expense : exp )
+
+        return {
+            ...state,
+            expenses : updateExpenses ,
+            modal :  false,
+            editingId : ''
+        }
+
     }
     
     return state
