@@ -7,7 +7,7 @@ import { useBudget } from "../hooks/useBudget"
 
 export default function BudgetTracket() {
 
-    const { state  , totalExpense , disponible } = useBudget();
+    const { state  , totalExpense , disponible , dispatch } = useBudget();
 
     // calulo del porcentaje gastado
     const porcentaje = +( ( totalExpense / state.budget) * 100 ).toFixed(2)
@@ -36,10 +36,12 @@ export default function BudgetTracket() {
                     <button
                         type="button"
                         className="bg-pink-600 w-full p-2 text-while uppercase font-bold rounded-lg"
+                        onClick={() => dispatch({ type : 'reset-app' } )}
                     >
-                        Resetear App
-                    </button>
 
+                        Resetear App
+
+                    </button>
 
                     <AmountDisplay
                         label="Presupuesto"
