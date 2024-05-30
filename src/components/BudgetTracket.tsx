@@ -1,15 +1,13 @@
-import { useEffect, useMemo } from "react"
+import { useMemo } from "react"
 import AmountDisplay from "./AmountDisplay"
 import { useBudget } from "../hooks/useBudget"
 
 
 export default function BudgetTracket() {
 
-    const { state } = useBudget();
+    const { state  , totalExpense , disponible } = useBudget();
 
-    const totalExpense = useMemo(() => state.expenses.reduce(( total , expense) => expense.amount + total , 0) , [state.expenses] )
 
-    const disponible = state.budget - totalExpense
 
     return (
         <div>

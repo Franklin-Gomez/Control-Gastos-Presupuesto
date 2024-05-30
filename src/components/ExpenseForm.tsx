@@ -17,13 +17,15 @@ export default function ExpenseForm() {
     })
 
     const [ error , setError ] = useState('')
-    const { dispatch , state } = useBudget()
+    const [ previousAmount , setPreviousAmount ] = useState(0) // para calculo de disponible
+    const { dispatch , state , disponible} = useBudget()
 
     useEffect(() => { 
         if( state.editingId ) { 
             const editingExpense = state.expenses.filter( expense => expense.id == state.editingId )[0]
 
             setExpense( editingExpense )
+            setPreviousAmount(editingExpense.amount)
         }
     } , [ state.editingId ])
 
@@ -58,6 +60,12 @@ export default function ExpenseForm() {
             return
         }
 
+        // al momento de actualizar : el nuevo - viejo monto
+        if( (expense.amount - previousAmount ) > disponible ) { 
+            setError('El gasto supera el monto total')
+            return
+        }
+
         // agregar o actualizar  un nuevo gasto
         if( state.editingId ) { 
             // Actualizar
@@ -74,6 +82,8 @@ export default function ExpenseForm() {
             category : '',
             date : new Date()
         })
+
+        setPreviousAmount(0)
     }
 
 
