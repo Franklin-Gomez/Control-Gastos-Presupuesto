@@ -1,4 +1,4 @@
-import { DraftExpense, Expense } from "../types"
+import { DraftExpense, Expense, category } from "../types"
 import { v4 as uuidv4 } from 'uuid';
 
 export type BudgetActions = 
@@ -9,13 +9,15 @@ export type BudgetActions =
     { type : 'remove-expense' , payload : { id : Expense['id'] }} |
     { type : 'get-expense-by-id' , payload : { id : Expense['id'] }} |
     { type : 'update-expense' , payload : { expense : Expense }} |
-    { type : 'reset-app' }
+    { type : 'reset-app' } | 
+    { type : 'add-filter-category' , payload : { id : category['id']}}
 
 export type BudgetType = { 
     budget : number
     modal : boolean
     expenses : Expense[]
     editingId : Expense['id']
+    currentCategory : category['id']
 }
 
 // seteamos en localStorage
@@ -33,7 +35,8 @@ export const initialState : BudgetType = {
     budget : initialStateBudget(),
     modal : false,
     expenses : initialStateExpenses(),
-    editingId : ''
+    editingId : '',
+    currentCategory : ''
 }
 
 // recibe el registro sin id , y devuelve con id
@@ -121,7 +124,14 @@ export const BudgetRecuder = (
             ...state,
             budget : 0,
             expenses : []
+        }
+        
+    }
 
+    if( action.type == 'add-filter-category') { 
+        return { 
+            ...state,
+            currentCategory : action.payload.id
         }
     }
 
