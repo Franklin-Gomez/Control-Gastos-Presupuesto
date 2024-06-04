@@ -1,7 +1,10 @@
+import Header from "./Components/Header"
+
 function App() {
   return (
     <>
-      <h1 className=" uppercase"> Hola mundo </h1>
+      <Header/>
+      
     </>
   )
 }
