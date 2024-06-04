@@ -1,6 +1,8 @@
 import { createContext, useReducer , ReactNode } from "react";
 import { BudgetRecuder , initialState , BudgetType , BudgetActions } from "../reducers/budget-recuer";
 import { useMemo } from "react";
+import React from "react"
+
 
 
 type BudgetContextProps = { 

@@ -4,6 +4,8 @@ import AmountDisplay from "./AmountDisplay"
 import { useMemo } from "react"
 import { categories } from "../data/db"
 import { useBudget } from "../hooks/useBudget"
+import React from "react"
+
 
 import {
     LeadingActions,

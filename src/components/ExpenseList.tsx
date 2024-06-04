@@ -1,6 +1,8 @@
 import { useMemo } from "react"
 import { useBudget } from "../hooks/useBudget"
 import ExpenseDetail from "./ExpenseDetail"
+import React from "react"
+
 
 export default function ExpenseList() {
 

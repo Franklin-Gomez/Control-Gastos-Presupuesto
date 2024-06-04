@@ -1,4 +1,5 @@
 import { formatCurrency } from "../helpers"
+import React from "react"
 
 type AmountDisplayProps = { 
     label? : string // ? para ser opcional

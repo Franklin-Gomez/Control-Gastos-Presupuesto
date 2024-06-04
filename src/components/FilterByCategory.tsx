@@ -1,5 +1,7 @@
 import { categories } from "../data/db";
 import { useBudget } from "../hooks/useBudget";
+import React from "react"
+
 
 export default function FilterByCategory() {
 

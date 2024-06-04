@@ -5,6 +5,7 @@ import BudgetTracket from "./components/BudgetTracket"
 import ExpenseModal from "./components/ExpenseModal"
 import ExpenseList from "./components/ExpenseList"
 import FilterByCategory from "./components/FilterByCategory"
+import React from "react"
 
 function App() {
 

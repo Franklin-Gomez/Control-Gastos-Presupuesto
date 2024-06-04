@@ -1,5 +1,7 @@
 import { CircularProgressbar , buildStyles  } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
+import React from "react"
+
 
 import AmountDisplay from "./AmountDisplay"
 import { useBudget } from "../hooks/useBudget"
