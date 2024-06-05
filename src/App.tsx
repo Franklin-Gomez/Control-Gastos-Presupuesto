@@ -1,18 +1,17 @@
 import Header from "./Components/Header"
 import FormPresupuesto from "./Components/FormPresupuesto"
 import { useBudget } from "./CustomHook/useContext"
+import BudgetTracket from "./Components/BudgetTracket"
 
 function App() {
 
   const { state } = useBudget()
 
-  console.log( state.budget )
-
   return (
     <>
       <Header/>
 
-      <FormPresupuesto/>      
+      { state.budget ? <BudgetTracket/> : <FormPresupuesto/>   }     
       
     </>
   )

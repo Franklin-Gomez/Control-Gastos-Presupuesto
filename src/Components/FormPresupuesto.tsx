@@ -12,7 +12,7 @@ export default function FormPresupuesto() {
 
   const isValid = useMemo(() => { 
 
-    return budget == 0 ? true : false 
+    return budget == 0 ? true : false ;
 
   } , [ budget ] )
 
