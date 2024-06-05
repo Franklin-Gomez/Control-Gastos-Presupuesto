@@ -1,4 +1,4 @@
-import { Children, createContext ,  useReducer } from "react";
+import { createContext ,  useReducer } from "react";
 import { BudgetReducers , initialState , budgetTypes , BubdgetActions } from "../Reducer/budget-reducers";
 import { ReactNode } from "react";
 
@@ -10,7 +10,6 @@ type BudgetContextProps = {
 type BudgetProviderProps = { 
     children : ReactNode
 }
-
 
 // Context
 export const BudgetContext = createContext<BudgetContextProps>(null!)
