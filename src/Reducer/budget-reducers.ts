@@ -22,7 +22,8 @@ export const BudgetReducers = (
 
     if ( actions.type == 'add-budget') { 
         return {
-            ...state
+            ...state,
+            budget : actions.payload.budget
         }
     }
 

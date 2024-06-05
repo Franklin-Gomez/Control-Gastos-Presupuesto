@@ -20,9 +20,12 @@ export default function FormPresupuesto() {
 
     e.preventDefault();
 
+    dispatch( {type : 'add-budget' , payload : { budget : budget } } )
+
   }
 
   return (
+
     <div className=" my-10 items-center max-w-3xl mx-auto shadow-xl" >
 
       <form action="" className=" space-y-5 bg-white p-10 rounded-xl" onSubmit={ handleSubmit} >
