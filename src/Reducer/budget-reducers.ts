@@ -1,15 +1,18 @@
 // actions
 export type  BubdgetActions  =
-{ type : 'add-budget' ,  payload : { budget : number } } 
+{ type : 'add-budget' ,  payload : { budget : number } } |
+{ type : 'show-modal'}
 
 // Types
 export type budgetTypes = { 
-    budget : number 
+    budget : number ,
+    modal : boolean
 }
 
 // states
 export const initialState : budgetTypes = { 
-    budget  : 0
+    budget  : 0 ,
+    modal : false
 }
 
 // Dispatch - Reducers
@@ -24,6 +27,13 @@ export const BudgetReducers = (
         return {
             ...state,
             budget : actions.payload.budget
+        }
+    }
+
+    if( actions.type == 'show-modal') { 
+        return {
+            ...state , 
+            modal : true
         }
     }
 
