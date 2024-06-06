@@ -4,8 +4,13 @@ export type Expense = {
     name : string , 
     amount : number,
     category : string,
-    date : string 
+    date : Value 
 }
+
+// Types Date
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 
 // database type
 export type category = { 
