@@ -3,6 +3,7 @@ export type  BubdgetActions  =
 { type : 'add-budget' ,  payload : { budget : number } } |
 { type : 'show-modal'}
 
+
 // Types
 export type budgetTypes = { 
     budget : number ,

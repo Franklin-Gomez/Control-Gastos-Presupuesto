@@ -4,6 +4,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
 import { DraftExpense, Value } from "../Types";
+import ErrorMessage from "./ErrorMessage";
 
 export default function ExpenseForm() {
 
@@ -17,6 +18,9 @@ export default function ExpenseForm() {
 
     // state para los valores ingresados
     const [expense , setExpense] = useState<DraftExpense>(formValue)
+
+    // state para error
+    const [ error , setError ] = useState('')
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => { 
         const { name , value } = e.target
@@ -42,8 +46,15 @@ export default function ExpenseForm() {
 
         e.preventDefault()
 
+        // validar 
         if( Object.values( expense ).includes('') || Object.values( expense ).includes( 0 ) ){
-            new Error('Debes Rellenar todos los campos ')
+
+            setError('Debes Rellenar todos los campos ')
+
+            setTimeout(() => {
+                setError('')
+            }, 4000);
+            
             return;
         }
     }
@@ -54,6 +65,8 @@ export default function ExpenseForm() {
             <h1 className=" p-5 text-center border-b-2 border-blue-600 text-2xl uppercase font-bold"> Guardar Nuevo Gasto </h1>
 
             <form className="flex  flex-col gap-y-4" onSubmit={ handleSubmit }>
+
+                { error &&  <ErrorMessage> { error } </ErrorMessage>}
 
                 <div className="flex flex-col mt-4 gap-y-2">
                     <label htmlFor="nombre" className="font-bold text-xl">Nombre Gasto :</label>
