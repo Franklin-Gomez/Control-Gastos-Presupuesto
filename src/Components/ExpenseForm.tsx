@@ -3,19 +3,20 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
+import { DraftExpense, Value } from "../Types";
 
 export default function ExpenseForm() {
 
     // valores iniciales 
     const formValue = { 
-        nombre : '',
+        nameExpense : '',
         amount : 0,
         category : '',
         date : new Date()
     }
 
     // state para los valores ingresados
-    const [expense , setExpense] = useState(formValue)
+    const [expense , setExpense] = useState<DraftExpense>(formValue)
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => { 
         const { name , value } = e.target
@@ -26,12 +27,21 @@ export default function ExpenseForm() {
             ...expense,
             [ name ] : isAmountField ? +value : value
         })
-
-        console.log( expense )
     }
 
-    const handleDate = () => { 
+    const handleChangeDate = ( value : Value ) => { 
 
+        console.log( value )
+
+        setExpense({ 
+            ...expense,
+            date : value
+        })
+    }
+
+    const handleSubmit = ( e : React.FormEvent<HTMLFormElement>) => { 
+
+        e.preventDefault()
     }
 
 
@@ -39,7 +49,7 @@ export default function ExpenseForm() {
         <>
             <h1 className=" p-5 text-center border-b-2 border-blue-600 text-2xl uppercase font-bold"> Guardar Nuevo Gasto </h1>
 
-            <form className="flex  flex-col gap-y-4">
+            <form className="flex  flex-col gap-y-4" onSubmit={ handleSubmit }>
 
                 <div className="flex flex-col mt-4 gap-y-2">
                     <label htmlFor="nombre" className="font-bold text-xl">Nombre Gasto :</label>
@@ -48,9 +58,9 @@ export default function ExpenseForm() {
                         placeholder="Añade el Nombre del Gasto" 
                         id="nombre" 
                         className=" p-2 bg-gray-200 rounded-lg" 
-                        name="nombre"
+                        name="nameExpense"
                         onChange={ handleChange }
-                        value={expense.nombre}
+                        value={expense.nameExpense}
                     />
                 </div>
 
@@ -86,10 +96,11 @@ export default function ExpenseForm() {
                 </div>
 
                 <div className="flex flex-col">
-                    <label htmlFor="" className="font-bold text-xl">Fecha Gasto :</label>
+                    <label htmlFor="date" className="font-bold text-xl">Fecha Gasto :</label>
                     <DatePicker 
                         className={"bg-slate-100 border-none"} 
-                        onChange={ handleDate }
+                        onChange={ handleChangeDate }
+                        value={expense.date}
                     />
                 </div>
 

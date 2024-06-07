@@ -1,7 +1,7 @@
 // form Expense Type
 export type Expense = {
     id : string, 
-    name : string , 
+    nameExpense : string , 
     amount : number,
     category : string,
     date : Value 
@@ -11,8 +11,8 @@ export type Expense = {
 export type DraftExpense = Omit<Expense, 'id'>
 
 // Types Date
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+export type ValuePiece = Date | null;
+export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 
 // database type
