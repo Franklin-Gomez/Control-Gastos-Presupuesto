@@ -7,6 +7,9 @@ export type Expense = {
     date : Value 
 }
 
+// Form Expense Type sin id
+export type DraftExpense = Omit<Expense, 'id'>
+
 // Types Date
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
