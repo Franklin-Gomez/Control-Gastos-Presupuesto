@@ -27,12 +27,11 @@ export default function ExpenseForm() {
             ...expense,
             [ name ] : isAmountField ? +value : value
         })
+
+        console.log( expense )
     }
 
     const handleChangeDate = ( value : Value ) => { 
-
-        console.log( value )
-
         setExpense({ 
             ...expense,
             date : value
@@ -42,6 +41,11 @@ export default function ExpenseForm() {
     const handleSubmit = ( e : React.FormEvent<HTMLFormElement>) => { 
 
         e.preventDefault()
+
+        if( Object.values( expense ).includes('') || Object.values( expense ).includes( 0 ) ){
+            new Error('Debes Rellenar todos los campos ')
+            return;
+        }
     }
 
 
@@ -87,8 +91,8 @@ export default function ExpenseForm() {
                         value={expense.category}       
                     >
 
-                        <option value={expense.category} className=" text-gray-300"> -- Seleccione Una Opcion -- </option>
-                        { categories.map( (category) => { 
+                        <option value="" className=" text-gray-300"> -- Seleccione Una Opcion -- </option>
+                        { categories.map( (category) => {
                             return <option value={category.id} key={ category.id }> {category.name }</option>
                         })}
 
