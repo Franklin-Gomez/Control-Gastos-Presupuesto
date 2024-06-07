@@ -5,6 +5,8 @@ import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
 import { DraftExpense, Value } from "../Types";
 import ErrorMessage from "./ErrorMessage";
+import { useBudget } from "../CustomHook/useContext";
+import { Expense } from "../Types";
 
 export default function ExpenseForm() {
 
@@ -21,6 +23,9 @@ export default function ExpenseForm() {
 
     // state para error
     const [ error , setError ] = useState('')
+
+    // state del reducers
+    const { dispatch } = useBudget()
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => { 
         const { name , value } = e.target
@@ -57,6 +62,9 @@ export default function ExpenseForm() {
             
             return;
         }
+
+        // Guardar elemento
+        dispatch( { type : 'add-expense' , payload : { expense : expense } })
     }
 
 

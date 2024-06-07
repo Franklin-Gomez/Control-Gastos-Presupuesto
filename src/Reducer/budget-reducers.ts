@@ -1,19 +1,24 @@
+import { Expense } from "../Types"
+
 // actions
 export type  BubdgetActions  =
 { type : 'add-budget' ,  payload : { budget : number } } |
-{ type : 'show-modal'}
+{ type : 'show-modal'} | 
+{ type : 'add-expense' , payload : { expense : Expense }}
 
 
 // Types
 export type budgetTypes = { 
     budget : number ,
-    modal : boolean
+    modal : boolean , 
+    expense : []
 }
 
 // states
 export const initialState : budgetTypes = { 
     budget  : 0 ,
-    modal : false
+    modal : false,
+    expense : []
 }
 
 // Dispatch - Reducers
@@ -35,6 +40,13 @@ export const BudgetReducers = (
         return {
             ...state , 
             modal : true
+        }
+    }
+
+    if( actions.type == 'add-expense') { 
+        return {
+            ...state,
+            expense : actions.payload.expense
         }
     }
 
