@@ -1,12 +1,9 @@
 import { useBudget } from "../CustomHook/useContext"
 import AmountDisplay from "./AmountDisplay";
-import ExpenseModal from "./ExpenseModal";
 
 export default function BudgetTracket() {
 
     const { state } =  useBudget();
-
-    console.log( state.budget )
 
     return (
         <>
@@ -38,8 +35,6 @@ export default function BudgetTracket() {
                 </div>
 
             </div>
-        
-            <ExpenseModal/>
         
         </>
     )
