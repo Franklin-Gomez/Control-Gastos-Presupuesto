@@ -1,10 +1,11 @@
-import { Expense } from "../Types"
+import { DraftExpense } from "../Types"
 
 // actions
 export type  BubdgetActions  =
 { type : 'add-budget' ,  payload : { budget : number } } |
 { type : 'show-modal'} | 
-{ type : 'add-expense' , payload : { expense : Expense }}
+{ type : 'close-modal'} |
+{ type : 'add-expense' , payload : { expense : DraftExpense }}
 
 
 // Types
@@ -43,10 +44,17 @@ export const BudgetReducers = (
         }
     }
 
+    if( actions.type == 'close-modal'){
+        return { 
+            ...state,
+            modal : false
+        }
+    }
+
     if( actions.type == 'add-expense') { 
         return {
             ...state,
-            expense : actions.payload.expense
+            expense : [ ...state.expense , actions.payload.expense ]
         }
     }
 

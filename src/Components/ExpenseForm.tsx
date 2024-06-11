@@ -3,10 +3,10 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
-import { DraftExpense, Value } from "../Types";
+import { DraftExpense, Value , Expense } from "../Types";
 import ErrorMessage from "./ErrorMessage";
 import { useBudget } from "../CustomHook/useContext";
-import { Expense } from "../Types";
+
 
 export default function ExpenseForm() {
 
@@ -25,7 +25,7 @@ export default function ExpenseForm() {
     const [ error , setError ] = useState('')
 
     // state del reducers
-    const { dispatch } = useBudget()
+    const { dispatch , state } = useBudget()
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => { 
         const { name , value } = e.target
@@ -37,7 +37,6 @@ export default function ExpenseForm() {
             [ name ] : isAmountField ? +value : value
         })
 
-        console.log( expense )
     }
 
     const handleChangeDate = ( value : Value ) => { 
@@ -64,7 +63,12 @@ export default function ExpenseForm() {
         }
 
         // Guardar elemento
-        dispatch( { type : 'add-expense' , payload : { expense : expense } })
+        dispatch( { type : 'add-expense' , payload : { expense : expense }})
+
+        // Cerrar Ventana modal
+        dispatch( { type : 'close-modal'})
+
+        
     }
 
 

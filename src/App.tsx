@@ -12,8 +12,6 @@ function App() {
       <Header/>
 
       { state.budget ?  <BudgetTracket/>  : <FormPresupuesto/>  }  
-
-     
       
     </>
   )
