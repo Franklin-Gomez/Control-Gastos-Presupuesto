@@ -25,7 +25,7 @@ export default function ExpenseForm() {
     const [ error , setError ] = useState('')
 
     // state del reducers
-    const { dispatch , state } = useBudget()
+    const { dispatch  } = useBudget()
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => { 
         const { name , value } = e.target
@@ -67,8 +67,7 @@ export default function ExpenseForm() {
 
         // Cerrar Ventana modal
         dispatch( { type : 'close-modal'})
-
-        
+   
     }
 
 
