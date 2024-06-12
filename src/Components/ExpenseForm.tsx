@@ -3,7 +3,7 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
-import { DraftExpense, Value , Expense } from "../Types";
+import { DraftExpense, Value } from "../Types";
 import ErrorMessage from "./ErrorMessage";
 import { useBudget } from "../CustomHook/useContext";
 
@@ -64,9 +64,6 @@ export default function ExpenseForm() {
 
         // Guardar elemento
         dispatch( { type : 'add-expense' , payload : { expense : expense }})
-
-        // Cerrar Ventana modal
-        dispatch( { type : 'close-modal'})
    
     }
 

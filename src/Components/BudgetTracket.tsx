@@ -10,7 +10,7 @@ export default function BudgetTracket() {
             <div className=" mt-3 bg-white max-w-3xl mx-auto rounded-lg border border-blue-600 p-5 shadow-lg grid grid-cols-2">
 
                 <div className="flex justify-center ">
-                    <img src="../public/grafico.jpg" alt="Grafica Gastos" />
+                    <img src="/grafico.jpg" alt="Grafica Gastos" />
                 </div>
 
                 <div className="flex flex-col gap-y-5 justify-center items-center ">

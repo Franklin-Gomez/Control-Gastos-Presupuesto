@@ -1,4 +1,6 @@
 import { DraftExpense } from "../Types"
+import { v4 as uuidv4} from 'uuid'
+import { Expense } from "../Types"
 
 // actions
 export type  BubdgetActions  =
@@ -52,9 +54,18 @@ export const BudgetReducers = (
     }
 
     if( actions.type == 'add-expense') { 
+
+        const createExpense = ( expense : DraftExpense)  : Expense => { 
+            return {
+                ...expense,
+                id : uuidv4()
+            }
+        }
+
         return {
             ...state,
-            expense : [ ...state.expense , actions.payload.expense ]
+            expense : [ ...state.expense , createExpense(actions.payload.expense ) ] ,
+            modal : false
         }
     }
 
