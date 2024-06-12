@@ -64,6 +64,8 @@ export default function ExpenseForm() {
 
         // Guardar elemento
         dispatch( { type : 'add-expense' , payload : { expense : expense }})
+
+        setExpense( formValue )
    
     }
 

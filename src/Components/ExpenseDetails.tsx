@@ -1,7 +1,7 @@
-import { DraftExpense } from "../Types"
+import { Expense } from "../Types"
 
 type ExpenseDetailsProps = { 
-    expense : DraftExpense
+    expense : Expense
 }
 
 
@@ -19,6 +19,6 @@ export default function ExpenseDetails( { expense } : ExpenseDetailsProps) {
 
         <p className=" text-2xl flex font-bold">$1.200</p>
 
-    </div>
+        </div>
     )
 }

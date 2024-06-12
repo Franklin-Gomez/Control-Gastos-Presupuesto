@@ -1,6 +1,7 @@
 
 import { useMemo } from "react"
 import { useBudget } from "../CustomHook/useContext"
+import ExpenseDetails from "./ExpenseDetails"
 
 export default function ExpenseList() {
 
@@ -17,19 +18,18 @@ export default function ExpenseList() {
                     <h1> No hay Gastos Aun </h1>
 
                     :
-                
+
                     state.expense.map( expense  => (
                         
-                        <ExpenseList
+                        <ExpenseDetails
                             key={expense}
-                            
+                            expense={expense}
                         />
                     
                     ))
             
                 }
 
-            
         </>
     )
 }

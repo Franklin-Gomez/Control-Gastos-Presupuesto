@@ -24,6 +24,8 @@ export const initialState : budgetTypes = {
     expense : []
 }
 
+
+
 // Dispatch - Reducers
 export const BudgetReducers = (
 
@@ -55,7 +57,8 @@ export const BudgetReducers = (
 
     if( actions.type == 'add-expense') { 
 
-        const createExpense = ( expense : DraftExpense)  : Expense => { 
+        // ad id         
+        const createExpense = ( expense : DraftExpense)  : Expense => {
             return {
                 ...expense,
                 id : uuidv4()
@@ -64,9 +67,10 @@ export const BudgetReducers = (
 
         return {
             ...state,
-            expense : [ ...state.expense , createExpense(actions.payload.expense ) ] ,
+            expense : [ ...state.expense , createExpense( actions.payload.expense )] ,
             modal : false
         }
+    
     }
 
     return state
