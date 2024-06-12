@@ -20,12 +20,11 @@ export default function ExpenseList() {
                     :
 
                     state.expense.map( expense  => (
-                        
+
                         <ExpenseDetails
-                            key={expense}
                             expense={expense}
                         />
-                    
+
                     ))
             
                 }
