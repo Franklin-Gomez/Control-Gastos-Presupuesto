@@ -6,6 +6,7 @@ import { useState } from "react";
 import { DraftExpense, Value } from "../Types";
 import ErrorMessage from "./ErrorMessage";
 import { useBudget } from "../CustomHook/useContext";
+import { useEffect } from "react";
 
 
 export default function ExpenseForm() {
@@ -17,15 +18,25 @@ export default function ExpenseForm() {
         category : '',
         date : new Date()
     }
+ 
+    
+    // state del reducers
+    const { dispatch , state  } = useBudget()
 
     // state para los valores ingresados
     const [expense , setExpense] = useState<DraftExpense>(formValue)
 
+    useEffect(() => { 
+        if( state.editingId ) { 
+            const editingExpense = state.expense.filter( expense => expense.id == state.editingId )[0]
+
+            setExpense( editingExpense )
+        }
+    } , [ state.editingId ])
+
     // state para error
     const [ error , setError ] = useState('')
 
-    // state del reducers
-    const { dispatch , state  } = useBudget()
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => { 
         const { name , value } = e.target
@@ -66,7 +77,6 @@ export default function ExpenseForm() {
 
 
         // Editar o Guardar 
-
         if ( state.editingId ) { 
             // Editar
             dispatch( { type : 'edit-expense' , payload : { expense : { id : state.editingId , ...expense }}})
@@ -75,8 +85,6 @@ export default function ExpenseForm() {
             dispatch( { type : 'add-expense' , payload : { expense : expense }})
         }
 
-        
-   
     }
 
 
