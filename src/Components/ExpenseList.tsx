@@ -11,25 +11,25 @@ export default function ExpenseList() {
 
     return (
         <>
-
         
             <h1 className="text-center font-bold text-3xl"> Listado de Gastos </h1>
 
-                { isEmpty ? 
-                
-                    <h1> No hay Gastos Aun </h1>
-
-                    :
-
-                    state.expense.map( expense  => (
-
-                        <ExpenseDetails
-                            expense={expense}
-                        />
-
-                    ))
+            { isEmpty ? 
             
-                }
+                <h1> No hay Gastos Aun </h1>
+
+                :
+
+                state.expense.map( expense  => (
+
+                    <ExpenseDetails
+                        key={expense.id}
+                        expense={expense}
+                    />
+
+                ))
+        
+            }
 
         </>
     )

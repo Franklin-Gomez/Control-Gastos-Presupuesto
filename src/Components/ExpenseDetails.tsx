@@ -10,13 +10,16 @@ import {
     SwipeAction,
     TrailingActions
 } from 'react-swipeable-list';
-import 'react-swipeable-list/dist/styles.css';
+import 'react-swipeable-list/dist/styles.css';  
+import { useBudget } from "../CustomHook/useContext";
 
 type ExpenseDetailsProps = { 
     expense : Expense
 }
 
 export default function ExpenseDetails( { expense } : ExpenseDetailsProps) {
+
+    const { dispatch } = useBudget()
 
     const categoryInfo = useMemo(() => categories.filter(( categoria ) => categoria.id == expense.category)[0] , [expense])
 
@@ -31,8 +34,8 @@ export default function ExpenseDetails( { expense } : ExpenseDetailsProps) {
     const trailingActions = () => (
         <TrailingActions>
           <SwipeAction
-            destructive={true}
-            onClick={() => console.info('swipe action triggered')}
+            //destructive={true}
+            onClick={() => dispatch( { type : 'delete-expense' , payload : { expense : expense }} )}
           >
             Delete
           </SwipeAction>

@@ -7,14 +7,15 @@ export type  BubdgetActions  =
 { type : 'add-budget' ,  payload : { budget : number } } |
 { type : 'show-modal'} | 
 { type : 'close-modal'} |
-{ type : 'add-expense' , payload : { expense : DraftExpense }}
+{ type : 'add-expense' , payload : { expense : DraftExpense }} |
+{ type : 'delete-expense' , payload : { expense  : Expense }}
 
 
 // Types
 export type budgetTypes = { 
     budget : number ,
     modal : boolean , 
-    expense : []
+    expense : Expense[]
 }
 
 // states
@@ -23,7 +24,6 @@ export const initialState : budgetTypes = {
     modal : false,
     expense : []
 }
-
 
 
 // Dispatch - Reducers
@@ -57,7 +57,7 @@ export const BudgetReducers = (
 
     if( actions.type == 'add-expense') { 
 
-        // ad id         
+        // add id         
         const createExpense = ( expense : DraftExpense)  : Expense => {
             return {
                 ...expense,
@@ -71,6 +71,16 @@ export const BudgetReducers = (
             modal : false
         }
     
+    }
+
+    if( actions.type == 'delete-expense') { 
+
+        const filterExpense = state.expense.filter(( expense ) => expense.id !== actions.payload.expense.id )
+
+        return { 
+            ...state ,
+            expense : filterExpense
+        }
     }
 
     return state
