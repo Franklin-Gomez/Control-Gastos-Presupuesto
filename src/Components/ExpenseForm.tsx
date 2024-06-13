@@ -25,7 +25,7 @@ export default function ExpenseForm() {
     const [ error , setError ] = useState('')
 
     // state del reducers
-    const { dispatch  } = useBudget()
+    const { dispatch , state  } = useBudget()
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => { 
         const { name , value } = e.target
@@ -62,10 +62,20 @@ export default function ExpenseForm() {
             return;
         }
 
-        // Guardar elemento
-        dispatch( { type : 'add-expense' , payload : { expense : expense }})
-
         setExpense( formValue )
+
+
+        // Editar o Guardar 
+
+        if ( state.editingId ) { 
+            // Editar
+            dispatch( { type : 'edit-expense' , payload : { expense : { id : state.editingId , ...expense }}})
+        } else { 
+            // Guardar elemento
+            dispatch( { type : 'add-expense' , payload : { expense : expense }})
+        }
+
+        
    
     }
 

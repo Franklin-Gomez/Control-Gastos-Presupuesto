@@ -25,20 +25,19 @@ export default function ExpenseDetails( { expense } : ExpenseDetailsProps) {
 
     const leadingActions = () => (
         <LeadingActions>
-          <SwipeAction onClick={() => {}}>
-            Actualizar
-          </SwipeAction>
+            <SwipeAction onClick={() => dispatch( { type : 'select-expense' , payload : { id : expense.id} })}>
+                Actualizar
+            </SwipeAction>
         </LeadingActions>
     )
       
     const trailingActions = () => (
         <TrailingActions>
-          <SwipeAction
-            //destructive={true}
-            onClick={() => dispatch( { type : 'delete-expense' , payload : { expense : expense }} )}
-          >
-            Delete
-          </SwipeAction>
+            <SwipeAction
+            onClick={() => dispatch( { type : 'delete-expense' , payload : { expense : expense.id }} )}
+            >
+                Delete
+            </SwipeAction>
         </TrailingActions>
     )
 
