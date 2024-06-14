@@ -2,8 +2,11 @@ import { useBudget } from "../CustomHook/useContext"
 import AmountDisplay from "./AmountDisplay";
 
 export default function BudgetTracket() {
-
+    
     const { state } =  useBudget();
+
+    const totalExpense = state.expense.reduce( ( total , expense ) => total + expense.amount , 0)
+
 
     return (
         <>
@@ -23,7 +26,7 @@ export default function BudgetTracket() {
                     />
 
                     <AmountDisplay
-                        disponible={ 1000 } 
+                        disponible={ totalExpense } 
                         texto={'Monto Gastado'}
                     />
 

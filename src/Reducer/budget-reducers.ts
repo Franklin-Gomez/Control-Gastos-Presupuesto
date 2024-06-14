@@ -61,7 +61,6 @@ export const BudgetReducers = (
     }
 
     if( actions.type == 'add-expense') { 
-
         // add id         
         const createExpense = ( expense : DraftExpense)  : Expense => {
             return {

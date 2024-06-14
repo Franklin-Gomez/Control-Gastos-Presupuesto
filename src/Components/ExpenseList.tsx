@@ -16,7 +16,7 @@ export default function ExpenseList() {
 
             { isEmpty ? 
             
-                <h1> No hay Gastos Aun </h1>
+                <h1 className="text-center font-bold uppercase mt-5"> No hay Gastos Aun </h1>
 
                 :
 
