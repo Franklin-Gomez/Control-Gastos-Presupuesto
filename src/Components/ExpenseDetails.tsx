@@ -2,6 +2,7 @@ import { useMemo } from "react"
 import { Expense } from "../Types"
 import { categories } from "../data/db"
 import { formatDate } from "../helpers"
+import { formatCurrency } from "../helpers"
 
 import {
     LeadingActions,
@@ -59,7 +60,7 @@ export default function ExpenseDetails( { expense } : ExpenseDetailsProps) {
                         <time> { formatDate( expense.date!.toString() )} </time>
                     </div>
 
-                    <p className=" text-2xl flex font-bold">{ expense.amount }</p>
+                    <p className=" text-2xl flex font-bold"> { formatCurrency (expense.amount) }</p>
 
                 </div>
             </SwipeableListItem>
