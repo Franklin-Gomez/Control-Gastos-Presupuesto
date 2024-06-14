@@ -5,6 +5,7 @@ import BudgetTracket from "./Components/BudgetTracket"
 import ExpenseList from "./Components/ExpenseList"
 import ExpenseModal from "./Components/ExpenseModal"
 import { useEffect } from "react"
+import FilterExpense from "./Components/FilterExpense"
 
 function App() {
 
@@ -21,12 +22,21 @@ function App() {
 
       { state.budget ?  <BudgetTracket/>  :  <FormPresupuesto/>}
 
-
       { state.budget > 0  && ( 
-        <main className="max-w-3xl mx-auto py-10 mt-6 border border-blue-600 shadow-lg rounded-lg p-5 mb-5 bg-white">
-          <ExpenseList/>                                                              
-          <ExpenseModal/>
-        </main>
+
+        <>
+
+          <FilterExpense/>
+
+          <main className="max-w-3xl mx-auto py-10 mt-6 border border-blue-600 shadow-lg rounded-lg p-5 mb-5 bg-white">
+          
+            <ExpenseList/>                                                              
+            <ExpenseModal/>
+
+          </main>
+
+        </>
+
       )}
     </>
   )
