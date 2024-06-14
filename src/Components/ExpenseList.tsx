@@ -7,7 +7,11 @@ export default function ExpenseList() {
 
     const { state } = useBudget()
 
-    const isEmpty = useMemo(() =>  state.expense.length == 0   , [state.expense])
+    const filtracion =  state.filterExpense ? state.expense.filter((expense) => expense.category == state.filterExpense ) : state.expense
+
+    const isEmpty = useMemo(() =>  filtracion.length == 0   , [state.expense])
+
+    console.log( filtracion )
 
     return (
         <>
@@ -20,7 +24,7 @@ export default function ExpenseList() {
 
                 :
 
-                state.expense.map( expense  => (
+                filtracion.map( expense  => (
 
                     <ExpenseDetails
                         key={expense.id}

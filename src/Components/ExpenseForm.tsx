@@ -126,7 +126,7 @@ export default function ExpenseForm() {
                         id="category"
                         name="category"
                         className="p-2 bg-gray-200 rounded-lg"
-                        onChange={ handleChange  }  
+                        onChange={ handleChange }  
                         value={expense.category}       
                     >
 

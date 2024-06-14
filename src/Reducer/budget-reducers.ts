@@ -1,6 +1,8 @@
 import { DraftExpense } from "../Types"
 import { v4 as uuidv4} from 'uuid'
 import { Expense } from "../Types"
+import { act } from "react"
+import FilterExpense from "../Components/FilterExpense"
 
 // actions
 export type  BubdgetActions  =
@@ -10,7 +12,8 @@ export type  BubdgetActions  =
 { type : 'add-expense' , payload : { expense : DraftExpense }} |
 { type : 'delete-expense' , payload : { expense  : Expense['id'] }} | 
 { type : 'select-expense' , payload : { id  : Expense['id'] }} |
-{ type : 'edit-expense' , payload : { expense : Expense }}
+{ type : 'edit-expense' , payload : { expense : Expense }} |
+{ type : 'filter-expense' , payload : { id : Expense['id'] }}
 
 
 // Types
@@ -18,7 +21,8 @@ export type budgetTypes = {
     budget : number ,
     modal : boolean , 
     expense : Expense[],
-    editingId : Expense['id']
+    editingId : Expense['id'],
+    filterExpense : Expense['id']
 }
 
 const initialValueBudget = () : number  => { 
@@ -37,7 +41,8 @@ export const initialState : budgetTypes = {
     budget  : initialValueBudget() ,
     modal : false,
     expense : initialStateExpenses(),
-    editingId : ''
+    editingId : '',
+    filterExpense : ''
 }
 
 
@@ -115,6 +120,14 @@ export const BudgetReducers = (
             modal : false,
             editingId : '',
             expense : updateExpense
+        }
+    }
+
+    if( actions.type == 'filter-expense') { 
+
+        return { 
+            ...state ,
+            filterExpense : actions.payload.id
         }
     }
 
