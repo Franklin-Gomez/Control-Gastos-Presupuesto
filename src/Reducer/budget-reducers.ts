@@ -55,7 +55,8 @@ export const BudgetReducers = (
     if( actions.type == 'close-modal'){
         return { 
             ...state,
-            modal : false
+            modal : false,
+            editingId : ''
         }
     }
 
@@ -88,7 +89,6 @@ export const BudgetReducers = (
     }
 
     if( actions.type == 'select-expense')  { 
-
         return { 
             ...state,
             modal : true,
@@ -97,7 +97,7 @@ export const BudgetReducers = (
     }
 
     if( actions.type == 'edit-expense')  { 
-
+        
         const updateExpense = state.expense.map(( exp ) => exp.id == actions.payload.expense.id ? actions.payload.expense : exp )
 
         return { 

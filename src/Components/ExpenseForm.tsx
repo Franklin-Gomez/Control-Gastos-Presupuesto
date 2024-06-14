@@ -25,7 +25,8 @@ export default function ExpenseForm() {
 
     // state para los valores ingresados
     const [expense , setExpense] = useState<DraftExpense>(formValue)
-
+    
+    // rellenar form con la informacion vieja
     useEffect(() => { 
         if( state.editingId ) { 
             const editingExpense = state.expense.filter( expense => expense.id == state.editingId )[0]
@@ -72,9 +73,6 @@ export default function ExpenseForm() {
             
             return;
         }
-
-        setExpense( formValue )
-
 
         // Editar o Guardar 
         if ( state.editingId ) { 
