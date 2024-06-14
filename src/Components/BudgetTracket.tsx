@@ -7,6 +7,7 @@ export default function BudgetTracket() {
 
     const totalExpense = state.expense.reduce( ( total , expense ) => total + expense.amount , 0)
 
+    const Disponible = state.budget - totalExpense
 
     return (
         <>
@@ -31,7 +32,7 @@ export default function BudgetTracket() {
                     />
 
                     <AmountDisplay
-                        disponible={ state.budget } 
+                        disponible={ Disponible } 
                         texto={'Saldo Disponible'}
                     />
                     
